@@ -8,7 +8,7 @@ namespace Poker
 {
     public class Hand
     {
-        private Card[] m_cHand = new Card[5];
+        private static Card[] m_cHand = new Card[5];
 
 
         public Hand()
@@ -16,10 +16,18 @@ namespace Poker
 
         }
 
-        private static Card[] GetCards (string p_strHand)
+        public  Card[] GetCards (string p_strHand)
         {
-            //todo add implementation code
-            return null;
+            Card[] arrCards = new Card[5];
+            int i = 0;
+            string[] arrSeparatedString = new string[] { ", " };
+
+            foreach(string strCard in p_strHand.Split(arrSeparatedString,StringSplitOptions.RemoveEmptyEntries))
+            {
+                arrCards[i] = new Card(strCard.Substring(0, strCard.Length - 1), strCard.Substring(strCard.Length - 1, 1));
+                i++;
+            }
+            return arrCards;
         }
         private static Card[] SortSBySuit(Card[] h)
         {
