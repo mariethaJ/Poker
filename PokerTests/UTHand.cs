@@ -267,15 +267,9 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_IsFlush()
         {
-            Card card1 = new Card("A", "D");
-            Card card2 = new Card("10", "D");
-            Card card3 = new Card("9", "D");
-            Card card4 = new Card("3", "D");
-            Card card5 = new Card("4", "D");
-
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            string strHand = "AD, 10D, 9D, 3D, 4D";
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("Flush", strActual, "The hand is FLUSH");
         }
@@ -283,15 +277,9 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_IsStraight()
         {
-            Card card1 = new Card("A", "D");
-            Card card2 = new Card("Q", "D");
-            Card card3 = new Card("J", "D");
-            Card card4 = new Card("K", "D");
-            Card card5 = new Card("10", "H");
-
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            string strHand = "AD, QD, JD, KD, 10H";
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("Straight", strActual, "The hand is STRAIGHT");
         }
@@ -299,15 +287,10 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_IsThreeOfKind()
         {
-            Card card1 = new Card("Q", "S");
-            Card card2 = new Card("Q", "D");
-            Card card3 = new Card("J", "D");
-            Card card4 = new Card("K", "D");
-            Card card5 = new Card("Q", "H");
+            string strHand = "QS, QD, JD, KD, QH";
 
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("Three of Kind", strActual, "The hand is THREE OF KIND");
         }
@@ -315,15 +298,10 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_IsTwoPair()
         {
-            Card card1 = new Card("Q", "S");
-            Card card2 = new Card("Q", "D");
-            Card card3 = new Card("J", "D");
-            Card card4 = new Card("K", "D");
-            Card card5 = new Card("J", "H");
+            string strHand = "QS, QD, JD, KD, JH";
 
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("Two Pair", strActual, "The hand is TWO PAIR");
         }
@@ -331,15 +309,9 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_IsOnePair()
         {
-            Card card1 = new Card("Q", "S");
-            Card card2 = new Card("Q", "D");
-            Card card3 = new Card("J", "D");
-            Card card4 = new Card("K", "D");
-            Card card5 = new Card("10", "H");
-
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            string strHand = "QS, QD, JD, KD, 10H";
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("One Pair", strActual, "The hand is ONE PAIR");
         }
@@ -347,15 +319,10 @@ namespace PokerTests
         [TestMethod]
         public void Evaluate_Couldnot()
         {
-            Card card1 = new Card("Q", "S");
-            Card card2 = new Card("8", "C");
-            Card card3 = new Card("7", "C");
-            Card card4 = new Card("K", "D");
-            Card card5 = new Card("10", "H");
 
-            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            string strHand = "QS, 8C, 7C, KD, 10H";
             Hand hand = new Hand();
-            string strActual = hand.EvaluateHand(arrCard);
+            string strActual = hand.EvaluateHand(strHand);
 
             Assert.AreEqual("Couldn't evaluate hand!!!", strActual, "Couldnt evaluate hand");
             

@@ -21,14 +21,31 @@ namespace Poker
             Card[] arrCards = new Card[5];
             int i = 0;
             string[] arrSeparatedString = new string[] { ", " };
-
+            string strRank;
+            string strSuit;
             try
             {
+                Card c1 = new Card(null, null);
 
                 foreach (string strCard in p_strHand.Split(arrSeparatedString, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    arrCards[i] = new Card(strCard.Substring(0, strCard.Length - 1), strCard.Substring(strCard.Length - 1, 1));
+                    strRank = strCard.Substring(0, strCard.Length - 1);
+                    strSuit = strCard.Substring(strCard.Length - 1, 1);
+                    if ((c1.IsValidRank(strRank)) && (c1.IsValidSuit(strSuit)))
+                        arrCards[i] = new Card(strRank, strSuit);
+                    else
+                    {
+                        if (!(c1.IsValidRank(strRank)))
+                        {                           
+                            return null;
+                        }
+                        if (!(c1.IsValidSuit(strSuit)))
+                        {                          
+                            return null;
+                        }
+                    }
                     i++;
+                   
                 }
                 return arrCards;
             }
@@ -166,20 +183,34 @@ namespace Poker
             
         }
 
-        public string EvaluateHand( Card[] h)
+        public string EvaluateHand(string p_strHand)
         {
-            if (IsFlush(h))
-                return "Flush";
-            else if (IsStraight(h))
-                return "Straight";
-            else if (IsThreeOfKind(h))
-                return "Three of Kind";
-            else if (IsTwoPair(h))
-                return "Two Pair";
-            else if (IsOnePair(h))
-                return "One Pair";
-            else
-                return "Couldn't evaluate hand!!!";
+            try
+            {
+                Card[] h = GetCards(p_strHand);
+
+                if (h != null)
+                {
+                    if (IsFlush(h))
+                        return "Flush";
+                    else if (IsStraight(h))
+                        return "Straight";
+                    else if (IsThreeOfKind(h))
+                        return "Three of Kind";
+                    else if (IsTwoPair(h))
+                        return "Two Pair";
+                    else if (IsOnePair(h))
+                        return "One Pair";
+                    else
+                        return "Couldn't evaluate hand!!!";
+                }
+                else
+                    return "Invalid Input";
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
     }

@@ -45,5 +45,26 @@ namespace Poker
             int ind = Array.IndexOf(arrRanks, p_strRank);
             return ind;
         }
+
+        public bool IsValidRank (string p_strRank)
+        {
+            int ind = GetIndexOfRank(p_strRank);
+            if (ind >= 0)
+                return true;
+            else
+                return false;
+
+        }
+
+        public bool IsValidSuit(string p_strSuit)
+        {
+            int ind = Array.IndexOf(arrSuits, p_strSuit);
+            if (ind >= 0)
+                return true;
+            else
+                return false;
+
+        }
+
     }
 }
