@@ -153,8 +153,17 @@ namespace Poker
 
         public Boolean IsOnePair(Card[] h)
         {
-            //TODO :add implementation code
-            return true;
+            var qry = from h1 in h
+                      group h1 by h1.Rank into grp
+                      where grp.Count() == 2
+                      select grp;
+
+            if (qry.Count() == 1)
+                return true;
+            else
+                return false;
+
+            
         }
 
         public string EvaluateHand( Card[] h)
