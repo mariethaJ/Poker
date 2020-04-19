@@ -127,8 +127,15 @@ namespace Poker
 
         public Boolean IsThreeOfKind(Card[] h)
         {
-            //TODO :add implementation code
-            return true;
+            var qry = from h1 in h
+                      group h1 by h1.Rank into grp
+                      where grp.Count() == 3
+                      select grp;
+
+            if (qry.Count() > 0)
+                return true;
+            else
+                return false;
         }
 
         public Boolean IsTwoPair(Card[] h)

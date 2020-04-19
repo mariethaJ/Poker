@@ -165,7 +165,39 @@ namespace PokerTests
             Hand hand = new Hand();
             Boolean bActual = hand.IsStraight(arrCard);
 
-            Assert.AreEqual(false, bActual, "The hand is STRAIGHT");
+            Assert.AreEqual(false, bActual, "The hand is NOT STRAIGHT");
+        }
+
+        [TestMethod]
+        public void IsThreeOfKind_True()
+        {
+            Card card1 = new Card("Q", "S");
+            Card card2 = new Card("Q", "D");
+            Card card3 = new Card("J", "D");
+            Card card4 = new Card("K", "D");
+            Card card5 = new Card("Q", "H");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            Hand hand = new Hand();
+            Boolean bActual = hand.IsThreeOfKind(arrCard);
+
+            Assert.AreEqual(true, bActual, "The hand is THREE OF KIND");
+        }
+
+        [TestMethod]
+        public void IsThreeOfKind_False()
+        {
+            Card card1 = new Card("A", "D");
+            Card card2 = new Card("Q", "D");
+            Card card3 = new Card("J", "D");
+            Card card4 = new Card("K", "D");
+            Card card5 = new Card("5", "H");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            Hand hand = new Hand();
+            Boolean bActual = hand.IsThreeOfKind(arrCard);
+
+            Assert.AreEqual(false, bActual, "The hand is NOT THREE OF KIND");
         }
     }
 }
