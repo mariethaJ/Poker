@@ -79,6 +79,37 @@ namespace PokerTests
 
         }
 
+        [TestMethod]
+        public void IsFlush_True()
+        {
+            Card card1 = new Card("A", "D");
+            Card card2 = new Card("10", "D");
+            Card card3 = new Card("9", "D");
+            Card card4 = new Card("3", "D");
+            Card card5 = new Card("4", "D");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            Hand hand = new Hand();
+            Boolean bActual = hand.IsFlush(arrCard);
+
+            Assert.AreEqual(true, bActual, "The hand is FLUSH");
+        }
+
+        [TestMethod]
+        public void IsFlush_False()
+        {
+            Card card1 = new Card("A", "D");
+            Card card2 = new Card("10", "D");
+            Card card3 = new Card("9", "D");
+            Card card4 = new Card("3", "D");
+            Card card5 = new Card("4", "H");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+            Hand hand = new Hand();
+            Boolean bActual = hand.IsFlush(arrCard);
+
+            Assert.AreEqual(false, bActual, "The hand is NOT FLUSH");
+        }
 
     }
 }

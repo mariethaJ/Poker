@@ -8,7 +8,7 @@ namespace Poker
 {
     public class Hand
     {
-        private static Card[] m_cHand = new Card[5];
+        //private static Card[] m_cHand = new Card[5];
 
 
         public Hand()
@@ -53,10 +53,17 @@ namespace Poker
             return result;
         }
 
-        private static Boolean IsFlush(Card[] h)
-        {
-            //TODO :add implementation code
-            return true;
+        public Boolean IsFlush(Card[] h)
+        {                     
+            var qry = from h1 in h
+                      group h1 by h1.Suit into grp
+                      where grp.Count() == 5
+                      select grp;
+
+            if (qry.Count() == 1)
+                return true;
+            else
+                return false;
         }
 
         private static Boolean IsStraight(Card[] h)
@@ -83,7 +90,7 @@ namespace Poker
             return true;
         }
 
-        public static string EvaluateHand( Card[] h)
+        public string EvaluateHand( Card[] h)
         {
             if (IsFlush(h))
                 return "Flush";
