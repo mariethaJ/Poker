@@ -31,6 +31,54 @@ namespace PokerTests
            
         }
 
+        [TestMethod]
+        public void SortBySuit()
+        {
+            Card card1 = new Card("A", "S");
+            Card card2 = new Card("10", "C");
+            Card card3 = new Card("10", "H");
+            Card card4 = new Card("3", "D");
+            Card card5 = new Card("3", "S");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+
+            Hand hand = new Hand();
+            Card[] arrCardActual = hand.SortBySuit(arrCard);
+
+            Card[] arrCardExpected = new Card[] { card2, card4, card3, card1, card5 };
+
+            for (int i = 0; i < 5; i++)
+            {
+              //  Assert.AreEqual(arrCardExpected[i].Rank, arrCardActual[i].Rank, $"The {i} card RANK is correct");
+                Assert.AreEqual(arrCardExpected[i].Suit, arrCardActual[i].Suit, $"The {i} card SUIT is correct");
+            }
+
+        }
+
+        [TestMethod]
+        public void SortByRank()
+        {
+            Card card1 = new Card("A", "S");
+            Card card2 = new Card("10", "C");
+            Card card3 = new Card("10", "H");
+            Card card4 = new Card("3", "D");
+            Card card5 = new Card("3", "S");
+
+            Card[] arrCard = new Card[] { card1, card2, card3, card4, card5 };
+
+            Hand hand = new Hand();
+            Card[] arrCardActual = hand.SortByRank(arrCard);
+
+            Card[] arrCardExpected = new Card[] { card2, card3, card4, card5, card1 };
+
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.AreEqual(arrCardExpected[i].Rank, arrCardActual[i].Rank, $"The {i} card RANK is correct");
+              //  Assert.AreEqual(arrCardExpected[i].Suit, arrCardActual[i].Suit, $"The {i} card SUIT is correct");
+            }
+
+        }
+
 
     }
 }

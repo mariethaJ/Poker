@@ -22,23 +22,35 @@ namespace Poker
             int i = 0;
             string[] arrSeparatedString = new string[] { ", " };
 
-            foreach(string strCard in p_strHand.Split(arrSeparatedString,StringSplitOptions.RemoveEmptyEntries))
+            try
             {
-                arrCards[i] = new Card(strCard.Substring(0, strCard.Length - 1), strCard.Substring(strCard.Length - 1, 1));
-                i++;
+
+                foreach (string strCard in p_strHand.Split(arrSeparatedString, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    arrCards[i] = new Card(strCard.Substring(0, strCard.Length - 1), strCard.Substring(strCard.Length - 1, 1));
+                    i++;
+                }
+                return arrCards;
             }
-            return arrCards;
+            catch (ArgumentException ex)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
-        private static Card[] SortSBySuit(Card[] h)
+        public Card[] SortBySuit(Card[] h)
         {
-            //just for design purpose use h
-            return h;
+            var result = h.OrderBy(x => x.Suit).ToArray();
+            return result;
         }
 
-        private static Card[] SortSByRank(Card[] h)
+        public Card[] SortByRank(Card[] h)
         {
-            //just for design purpose use h
-            return h;
+            var result = h.OrderBy(x => x.Rank).ToArray();
+            return result;
         }
 
         private static Boolean IsFlush(Card[] h)
