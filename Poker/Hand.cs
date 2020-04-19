@@ -170,8 +170,17 @@ namespace Poker
         {
             if (IsFlush(h))
                 return "Flush";
+            else if (IsStraight(h))
+                return "Straight";
+            else if (IsThreeOfKind(h))
+                return "Three of Kind";
+            else if (IsTwoPair(h))
+                return "Two Pair";
+            else if (IsOnePair(h))
+                return "One Pair";
             else
-                return "";
+                return "Couldn't evaluate hand!!!";
+
         }
     }
 }
