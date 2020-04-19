@@ -40,5 +40,10 @@ namespace Poker
             m_strSuit = p_strSuit;
         }
 
+        public int GetIndexOfRank(string p_strRank)
+        {
+            int ind = Array.IndexOf(arrRanks, p_strRank);
+            return ind;
+        }
     }
 }

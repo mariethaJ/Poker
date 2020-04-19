@@ -57,23 +57,29 @@ namespace Poker
             string[] arrRanks = c1.Ranks;
             int i = 0;
 
-            foreach (Card c in h)
+            try
             {
-                arrIndexes[i] = Array.IndexOf(arrRanks, c.Rank);
-                arrCIndex[i] = new Card(arrIndexes[i].ToString(), c.Suit);
-                i++;
+                foreach (Card c in h)
+                {                    
+                    arrCIndex[i] = new Card(c1.GetIndexOfRank(c.Rank).ToString(), c.Suit);
+                    i++;
+                }
+
+                i = 0;
+                var vIndexCard = arrCIndex.OrderBy(x => Convert.ToInt32(x.Rank)).ToArray();
+                Card[] resultCardSet = new Card[5];
+
+                foreach (Card c in vIndexCard)
+                {
+                    resultCardSet[i] = new Card(arrRanks[Convert.ToInt32(c.Rank)], c.Suit);
+                    i++;
+                }
+                return resultCardSet;
             }
-
-            i = 0;
-            var vIndexCard = arrCIndex.OrderBy(x => Convert.ToInt32(x.Rank)).ToArray();
-            Card[] resultCardSet = new Card[5];
-
-            foreach(Card c in vIndexCard)
+            catch (Exception ex)
             {
-                resultCardSet[i] = new Card(arrRanks[Convert.ToInt32(c.Rank)], c.Suit);
-                i++;
+                throw;
             }
-            return resultCardSet;
         }
 
         public Boolean IsFlush(Card[] h)
@@ -91,22 +97,32 @@ namespace Poker
 
         public Boolean IsStraight(Card[] h)
         {
-            /*
+            
             Card[] arrCards = new Card[5];
             int counter = 0;
 
-            arrCards = SortByRank(h);
-
-            for (int i = 0; i < 5; i++)
+            try
             {
-                if (i == 0)
-                    counter++;
-                else if (arrCards[i].Rank == arrCards[i - 1].Rank )
-                    counter++;
+                arrCards = SortByRank(h);
+
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i == 0)
+                        counter++;
+                    else if (arrCards[i].GetIndexOfRank(arrCards[i].Rank) - arrCards[i - 1].GetIndexOfRank(arrCards[i - 1].Rank) == 1)
+                        counter++;
+                    else
+                        return false;
+                }
+                if (counter == 5)
+                    return true;
                 else
                     return false;
-            */
-                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public Boolean IsThreeOfKind(Card[] h)
