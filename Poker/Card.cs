@@ -24,6 +24,16 @@ namespace Poker
             get { return m_strSuit; }
         }
 
+        public string[] Ranks
+        {
+            get { return arrRanks; } 
+        }
+
+        public string[] Suits
+        {
+            get { return arrSuits; }
+        }
+
         public Card(string p_strRank, string p_strSuit)
         {
             m_strRank = p_strRank;

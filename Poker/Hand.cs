@@ -49,8 +49,31 @@ namespace Poker
 
         public Card[] SortByRank(Card[] h)
         {
-            var result = h.OrderBy(x => x.Rank).ToArray();
-            return result;
+            //var result = h.OrderBy(x => x.Rank).ToArray();
+            //return result;
+            Card[] arrCIndex = new Card[5];
+            int[] arrIndexes = new int[5];
+            Card c1 = new Card(null,null);
+            string[] arrRanks = c1.Ranks;
+            int i = 0;
+
+            foreach (Card c in h)
+            {
+                arrIndexes[i] = Array.IndexOf(arrRanks, c.Rank);
+                arrCIndex[i] = new Card(arrIndexes[i].ToString(), c.Suit);
+                i++;
+            }
+
+            i = 0;
+            var vIndexCard = arrCIndex.OrderBy(x => Convert.ToInt32(x.Rank)).ToArray();
+            Card[] resultCardSet = new Card[5];
+
+            foreach(Card c in vIndexCard)
+            {
+                resultCardSet[i] = new Card(arrRanks[Convert.ToInt32(c.Rank)], c.Suit);
+                i++;
+            }
+            return resultCardSet;
         }
 
         public Boolean IsFlush(Card[] h)
@@ -66,25 +89,39 @@ namespace Poker
                 return false;
         }
 
-        private static Boolean IsStraight(Card[] h)
+        public Boolean IsStraight(Card[] h)
+        {
+            /*
+            Card[] arrCards = new Card[5];
+            int counter = 0;
+
+            arrCards = SortByRank(h);
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (i == 0)
+                    counter++;
+                else if (arrCards[i].Rank == arrCards[i - 1].Rank )
+                    counter++;
+                else
+                    return false;
+            */
+                return true;
+        }
+
+        public Boolean IsThreeOfKind(Card[] h)
         {
             //TODO :add implementation code
             return true;
         }
 
-        private static Boolean IsThreeOfKind(Card[] h)
+        public Boolean IsTwoPair(Card[] h)
         {
             //TODO :add implementation code
             return true;
         }
 
-        private static Boolean IsTwoPair(Card[] h)
-        {
-            //TODO :add implementation code
-            return true;
-        }
-
-        private static Boolean IsOnePair(Card[] h)
+        public Boolean IsOnePair(Card[] h)
         {
             //TODO :add implementation code
             return true;
