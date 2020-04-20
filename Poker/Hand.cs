@@ -51,9 +51,9 @@ namespace Poker
             }
             catch (ArgumentException ex)
             {
-                throw;
+                throw ex;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
@@ -93,7 +93,7 @@ namespace Poker
                 }
                 return resultCardSet;
             }
-            catch (Exception ex)
+            catch 
             {
                 throw;
             }
@@ -136,7 +136,7 @@ namespace Poker
                 else
                     return false;
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
@@ -207,7 +207,7 @@ namespace Poker
                 else
                     return "Invalid Input";
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }
